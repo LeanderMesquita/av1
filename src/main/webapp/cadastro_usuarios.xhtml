@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<h:head><title>Cadastro de usuarios</title></h:head>
+	<h:body>
+		<h:form id="formulario">
+			 <p:messages id="messages" showDetail="true" closable="true">
+	            <p:autoUpdate/>
+	        </p:messages>
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Nome"/>
+				<p:inputText value="#{usuarioBean.user.nome}"
+							required="true"
+							requiredMessage="O nome é obrigatório"
+				/>
+				
+				<p:outputLabel value="Sexo"/>
+				<p:selectOneMenu value="#{usuarioBean.user.sexo}"
+								required="true"
+								requiredMessage="A escolha do sexo é obrigatória."
+				>
+					<f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
+					<f:selectItem itemValue="Feminino" itemLabel="Feminino"/>
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="Senha"/>
+				<p:password value="#{usuarioBean.user.senha}"
+							required="true"
+							requiredMessage="Senha é obrigatória."
+				/>
+				
+				<p:outputLabel value="Data de nascimento"/>
+				<p:datePicker id="dataNascimento" 
+                              value="#{usuarioBean.user.dataNascimento}" 
+                              pattern="dd/MM/yyyy"
+                              yearRange="1900:2024" 
+                              required="true" 
+                              requiredMessage="Data de nascimento é obrigatória!"/>
+				
+				<p:commandButton value="Salvar" action="#{usuarioBean.salvar()}" update="formulario"/>
+				<p:link outcome="listagem_usuarios" value="Listar"/>
+				
+			</p:panelGrid>
+		</h:form>
+	</h:body>
+
+</html>
